@@ -11,7 +11,7 @@ d3.json(url).then(function(data) {
     return magnitude* 3.5;
   }
 
-  // Define a marker color function that will give each each earthquake a different intensity based on the depth.
+  // Define a marker color function that will give each each earthquake a different intensity/darkness based on the depth.
   function markerbold(depth) {
     if (depth < 2) return "#ffff00";
     else if (depth >=2 && depth < 6 ) return "#ccff33";
@@ -21,11 +21,8 @@ d3.json(url).then(function(data) {
     else if (depth >= 60) return "#003300";
   }
 
-
-
+// Define a function that we want to run once for each feature in the features array.
 function earthquakeFeatures(earthquakeData) {
-
-    // Define a function that we want to run once for each feature in the features array.
     // Give each feature a popup that describes the id and category of the earthquake
     function onEachFeature(feature, layer) {
       layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>Alert Category:${feature.properties.alert}, Magnitude:${feature.properties.mag}</p>`);
@@ -75,7 +72,7 @@ function earthquakeFeatures(earthquakeData) {
       layers: [street, earthquakes]
     });
     var legend = L.control({position: 'bottomright'});
-
+//Create legend
   legend.onAdd = function (map) {
   
       var div = L.DomUtil.create('div', 'info legend'),
@@ -94,7 +91,6 @@ function earthquakeFeatures(earthquakeData) {
   
   legend.addTo(myMap);
   }
-  // //  Set up the legend.
 
   
   });
